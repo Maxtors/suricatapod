@@ -6,12 +6,22 @@
 dnf -y update
 dnf -y install git vim make libtool gcc
 
+# Install docker
+dnf -y install docker
+
+# Start docker
+sudo systemctl start docker
+
+# Test if docker is working
+sudo docker run hello-world
+
 # Install dependencies for suricata
 dnf -y install hiredis-devel luajit-devel libpcap-devel pcre-devel libyaml-devel file-devel zlib-devel jansson-devel nss-devel libcap-ng-devel libnet-devel
 
 # Create working area for Suricata installation
-mkdir /home/vagrant/dev
-cd /home/vagrant/dev
+cd /home/vagrant
+[ -d dev ] || mkdir dev
+cd dev
 
 # Clone Suricata GIT Repo
 git clone https://github.com/inliniac/suricata.git
