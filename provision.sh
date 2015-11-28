@@ -70,6 +70,11 @@ log "Enabeling Elasticsearch in systemctl"
 /bin/systemctl daemon-reload
 /bin/systemctl enable /usr/lib/systemd/system/elasticsearch.servicie
 
+# Make it so that the vagrant user can use docker without use of SUDO
+log "Adding docker group and vagrant user to docker group"
+groupadd docker
+gpasswd -a vagrant docker
+
 # Start docker process
 log "Starting Docker process"
 sudo systemctl start docker
